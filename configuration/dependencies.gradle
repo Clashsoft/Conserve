@@ -6,7 +6,7 @@ ext {
 
     compiler = [
             java : JavaVersion.VERSION_1_8,
-            kotlin : '1.3.41'
+            kotlin : '1.3.70'
     ]
 
     daggerVersion = '2.14.+'
