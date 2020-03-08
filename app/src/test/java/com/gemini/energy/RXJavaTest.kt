@@ -1,18 +1,16 @@
 package com.gemini.energy
 
 import io.reactivex.*
-import junit.framework.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class RXJavaTest {
-    var result = ""
-
     @Test
     fun returnAValue() {
-        result = ""
-        var observer: Observable<String> = Observable.just("Hello")
+        var result = ""
+        val observer: Observable<String> = Observable.just("Hello")
         observer.subscribe { s -> result = s }
-        Assert.assertTrue(result.equals("Hello"))
+        assertEquals("Hello", result)
     }
 
 
