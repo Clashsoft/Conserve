@@ -6,6 +6,7 @@ import com.gemini.energy.R
 import com.gemini.energy.presentation.form.model.GElements
 import com.gemini.energy.presentation.form.model.GEnergyFormModel
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class FormMapper(private val context: Context, private val rawId: Int?) {
 
@@ -21,7 +22,9 @@ class FormMapper(private val context: Context, private val rawId: Int?) {
         val json = context.resources.openRawResource(rawId!!)
                 .bufferedReader().use { it.readText() }
 
-        val moshi = Moshi.Builder().build()
+        val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
         val jsonAdapter = moshi.adapter<GEnergyFormModel>(GEnergyFormModel::class.java)
 
         try {

@@ -1,6 +1,7 @@
 package com.gemini.energy
 
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.Test
 
 class JSONParserTest {
@@ -10,7 +11,10 @@ class JSONParserTest {
         val json = this.javaClass.getResourceAsStream("sample.json")
                 .bufferedReader().use { it.readText() }
 
-        val moshi = Moshi.Builder().build()
+        val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+
         val jsonAdapter = moshi.adapter<Array<Product>>(Array<Product>::class.java)
         var products: Array<Product>? = null
 
