@@ -7,7 +7,8 @@ import org.junit.Test
 class JSONParserTest {
 
     @Test
-    public fun readJSON() {
+    @Throws(Exception::class)
+    fun readJSON() {
         val json = this.javaClass.getResourceAsStream("sample.json")
                 .bufferedReader().use { it.readText() }
 
@@ -15,38 +16,26 @@ class JSONParserTest {
                 .add(KotlinJsonAdapterFactory())
                 .build()
 
-        val jsonAdapter = moshi.adapter<Array<Product>>(Array<Product>::class.java)
-        var products: Array<Product>? = null
+        val jsonAdapter = moshi.adapter(Array<Product>::class.java)
+        val products = jsonAdapter.fromJson(json)!!
 
-        try {
-            products = jsonAdapter.fromJson(json)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        for (p in products!!) {
+        for (p in products) {
             println("${p.section}")
 
-            p.elements.let {
-                it?.forEach {
-
-                    println("${it.price} -- ${it.productname}")
-
-                }
+            p.elements?.forEach { it ->
+                println("${it.price} -- ${it.productname}")
             }
         }
     }
 
 
     class Product {
-        val section: String? = null
-        val elements: List<Elements>? = null
+        var section: String? = null
+        var elements: List<Elements>? = null
     }
 
     class Elements {
-        val productname: String? = null
-        val price: String? = null
+        var productname: String? = null
+        var price: String? = null
     }
 }
-
-
