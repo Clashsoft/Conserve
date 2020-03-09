@@ -1,23 +1,22 @@
 package com.gemini.energy.presentation.form.model
 
-
 class GEnergyFormModel {
-    val geminiForm: List<GFormBlock>? = null
+    var geminiForm: List<GFormBlock>? = null
 }
 
 class GFormBlock {
-    val id: Int? = null
-    val index: Int? = null
-    val section: String? = null
-    val elements: List<GElements>? = null
+    var id: Int? = null
+    var index: Int? = null
+    var section: String? = null
+    var elements: List<GElements>? = null
 }
 
 class GElements {
-    val id: Int? = null
-    val index: Int? = null
-    val param: String? = null
-    val dataType: String? = null
-    val validation: String? = null
-    val hint: String? = null
-    val defaultValues: String? = null
+    var id: Int? = null
+    var index: Int? = null
+    var param: String? = null
+    var dataType: String? = null
+    var validation: String? = null
+    var hint: String? = null
+    var defaultValues: String? = null
 }
